@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:request_api_helper/request.dart';
 import 'package:request_api_helper/request_api_helper.dart';
 
+import 'auto_model.dart';
 import 'model.dart';
 
 void main() async {
@@ -43,7 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    // Controller.getData();
+    Controller.getData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -59,18 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            // AutoRefresh<List<Item>>(
-            //   listener: Controller.item,
-            //   builder: (v) {
-            //     return Text(
-            //       '${v.length}',
-            //       style: Theme.of(context).textTheme.headline4,
-            //     );
-            //   },
-            // )
-            ValueListenableBuilder<List<Item>>(
-              valueListenable: Controller.item,
-              builder: (_, v, __) {
+            AutoRefresh<List<Item>>(
+              listener: Controller.item.listener,
+              builder: (v) {
                 return Text(
                   '${v.length}',
                   style: Theme.of(context).textTheme.headline4,
