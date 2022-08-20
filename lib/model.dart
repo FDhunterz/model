@@ -38,7 +38,7 @@ class Controller {
         onSuccess: (d) {
           for (var i in d['items']) {
             item.refresh((value) async {
-              value.add(Item.build(i));
+              value.value.add(Item.build(i));
             });
           }
         },

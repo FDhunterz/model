@@ -8,8 +8,8 @@ class AutoRefreshListener<T> extends ChangeNotifier {
     listener = ValueNotifier<T>(values);
   }
 
-  refresh(Function(T value) function) async {
-    await function(listener.value);
+  refresh(Function(ValueNotifier<T> listener) function) async {
+    await function(listener);
     listener.notifyListeners();
   }
 }
